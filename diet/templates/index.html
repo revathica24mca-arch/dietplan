@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Health & Fitness Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Creative background */
+    body { 
+      font-family: "Segoe UI", sans-serif; 
+      margin:0; 
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, #4d484bff 0%, #fed6e3 100%);
+      background-attachment: fixed;
+    }
+
+    /* Container with glass effect */
+    .wrap { 
+      max-width:1000px; 
+      width:95%;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius:16px; 
+      padding:28px; 
+      box-shadow:0 10px 40px rgba(0,0,0,.15);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1 { 
+      margin:0 0 10px; 
+      color:#1f2937; 
+      text-align:center;
+    }
+
+    p { text-align:center; color:#4b5563; margin-bottom:20px; }
+
+    .grid { 
+      display:grid; 
+      grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); 
+      gap:16px; 
+    }
+
+    label { 
+      font-weight:bold; 
+      display:block; 
+      margin-bottom:6px; 
+      color:#374151;
+    }
+
+    input, select, textarea { 
+      width:100%; 
+      padding:10px; 
+      border:1px solid #ddd; 
+      border-radius:8px; 
+      font-size:15px;
+      background:#fff;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color:#2563eb;
+      box-shadow:0 0 0 3px rgba(37,99,235,0.2);
+      outline:none;
+    }
+
+    .section { 
+      margin:22px 0; 
+      padding-top:10px; 
+      border-top:1px dashed #e5e7eb; 
+      animation: slideUp 0.7s ease;
+    }
+
+    button { 
+      padding:14px 22px; 
+      border:none; 
+      border-radius:10px; 
+      font-weight:700; 
+      cursor:pointer; 
+      background:#2563eb; 
+      color:#fff; 
+      font-size:16px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      display:block;
+      margin: 0 auto;
+    }
+
+    button:hover { 
+      transform: scale(1.05); 
+      background:#1d4ed8; 
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(15px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🌿 Health & Fitness Planner</h1>
+    <p>Fill your details. The plan adapts to multiple health conditions and preferences.</p>
+
+    <form method="POST" action="/submit">
+      <div class="section">
+        <h3>Basic Details</h3>
+        <div class="grid">
+          <div><label>Name</label><input name="name" required /></div>
+          <div><label>Age</label><input type="number" name="age" required /></div>
+          <div>
+            <label>Gender</label>
+            <select name="gender" required>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div><label>Height (cm)</label><input type="number" name="height" step="0.1" required /></div>
+          <div><label>Weight (kg)</label><input type="number" name="weight" step="0.1" required /></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Lifestyle</h3>
+        <div class="grid">
+          <div><label>Sleep (hours)</label><input type="number" name="sleep" step="0.1" required /></div>
+          <div>
+            <label>Activity</label>
+            <select name="activity" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div>
+            <label>Stress</label>
+            <select name="stress" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div>
+            <label>Work Type</label>
+            <select name="work_type" required>
+              <option value="sedentary">Sedentary (desk job)</option>
+              <option value="active">Active</option>
+              <option value="field">Field/Manual</option>
+              <option value="homemaker">homemaker</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Medical Conditions</h3>
+        <div class="grid">
+          <div>
+            <label>Blood Pressure</label>
+            <select name="bp" required>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div>
+            <label>Sugar / Diabetes</label>
+            <select name="sugar" required>
+              <option value="none">None</option>
+              <option value="prediabetic">Prediabetic</option>
+              <option value="diabetic">Diabetic</option>
+            </select>
+          </div>
+          <div>
+            <label>Thyroid</label>
+            <select name="thyroid" required>
+              <option value="none">None</option>
+              <option value="hypo">Hypothyroid</option>
+              <option value="hyper">Hyperthyroid</option>
+            </select>
+          </div>
+          <div>
+            <label>PCOD/PCOS</label>
+            <select name="pcod" required>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div>
+            <label>Cholesterol</label>
+            <select name="cholesterol" required>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div>
+            <label>Heart Condition</label>
+            <select name="heart" required>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div>
+            <label>Kidney Issues</label>
+            <select name="kidney" required>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div>
+            <label>Pregnancy</label>
+            <select name="pregnancy" required>
+              <option value="na">Not Applicable</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Diet & Goals</h3>
+        <div class="grid">
+          <div>
+            <label>Diet Preference</label>
+            <select name="diet_pref" required>
+             <option value="Veg">Veg</option>
+             <option value="Non-Veg">Non-Veg</option>
+             <option value="Vegan">Vegan</option>
+             <option value="Both">Both (Veg + Non-Veg)</option>
+            </select>
+          </div>
+          <div>
+            <label>Goal</label>
+            <select name="goal" required>
+              <option value="weight_loss">Weight Loss</option>
+              <option value="weight_gain">Weight Gain</option>
+              <option value="fitness">General Fitness</option>
+              <option value="muscle">Muscle Building</option>
+              <option value="disease_control">Disease Control</option>
+            </select>
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label>Allergies (comma separated)</label>
+            <textarea name="allergies" rows="2" placeholder="e.g., lactose, peanuts, gluten"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <button type="submit">✨ Generate Plan</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

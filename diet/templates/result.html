@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personalized Diet Plan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+
+    <!-- Profile details card -->
+    <div class="card p-3 mb-3">
+        <h3 class="text-center">Profile Information</h3>
+        <p><b>Name:</b> {{ profile.name }}</p>
+        <p><b>Age:</b> {{ profile.age }}</p>
+        <p><b>Weight:</b> {{ profile.weight }} kg</p>
+        <p><b>Height:</b> {{ profile.height }} cm</p>
+        <p><b>BMI:</b> {{ profile.bmi }} ({{ profile.weight_class }})</p>
+    </div>
+
+    <!-- Diet Plan -->
+    <div class="card p-3 mt-3">
+        <h3 class="text-center">Diet Plan</h3>
+        <table class="table table-bordered table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Day</th>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Snack</th>
+                    <th>Dinner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day, meals in plan.diet_plan.items() %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>{{ meals['breakfast'] }}</td>
+                    <td>{{ meals['lunch'] }}</td>
+                    <td>{{ meals['snack'] }}</td>
+                    <td>{{ meals['dinner'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Exercise Plan -->
+    <div class="card p-3 mt-3">
+        <h3 class="text-center">Exercise Plan</h3>
+        <ul>
+            {% for ex in plan.exercise_plan %}
+            <li>{{ ex }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Notes -->
+    <div class="card p-3 mt-3">
+        <h3 class="text-center">Notes & Lifestyle Tips</h3>
+        <ul>
+            {% for note in plan.notes %}
+            <li>{{ note }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Download -->
+    <div class="mt-4 text-center">
+        <a href="{{ url_for('download_pdf') }}" class="btn btn-danger">Download as PDF</a>
+    </div>
+
+</body>
+</html>
